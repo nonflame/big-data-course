@@ -1,62 +1,59 @@
 beginner.how_many_items_in_hdfs:
     stdin: "9"
 intermediate.hdfs_list_recursively:
-    stdin: "provide your answer here"
+    stdin: "hdfs dfs -ls -R /data/wiki"
 intermediate.hdfs_list_recursively_human_readable:
-    stdin: "provide your answer here"
+    stdin: "hdfs dfs -ls -R -h /data/wiki"
 intermediate.hdfs_file_replication_factor:
-    stdin: "provide your answer here"
+    stdin: "0"
 intermediate.hdfs_folder_replication_factor:
-    stdin: "provide your answer here"
+    stdin: "0"
 intermediate.hdfs_describe_size:
-    stdin: "provide your answer here"
+    stdin: "actual"
 intermediate.hdfs_cumulative_size:
-    stdin: "provide your answer here"
+    stdin: "hdfs dfs -du -s -h /data/wiki"
 intermediate.hdfs_create_folder:
-    stdin: "provide your answer here"
+    stdin: "hdfs dfs -mkdir /user/bd2021q2_plosskaya/nonflame_folder"
 intermediate.hdfs_create_nested_folder:
-    stdin: "provide your answer here"
+    stdin: "hdfs dfs -mkdir -p /user/bd2021q2_plosskaya/nonflame_folder/1/2/3"
 intermediate.hdfs_remove_nested_folders:
-    stdin: "provide your answer here"
+    stdin: "hdfs dfs -rm -r /user/bd2021q2_plosskaya/*"
 intermediate.hdfs_trash_behavior:
-    stdin: "provide your answer here"
+    stdin: "trash - ограниченная по времени хранения файлов локальная директория для удаленных файлов в директории пользователя, удаленных пользователем из любого места (ноды). hdfs dfs -rm -r -skipTrash /user/bd2021q2_plosskaya/*"
 intermediate.hdfs_create_empty_file:
-    stdin: "provide your answer here"
+    stdin: "hdfs dfs -touchz /user/bd2021q2_plosskaya/nonflame_folder/test.txt"
 intermediate.hdfs_create_small_file:
     stdin: |-
-        provide your
-        multiline answer
-        here
+        hdfs dfs -put /home/group_bd_2021q2/bd2021q2_plosskaya/blake.txt /user/bd2021q2_plosskaya/nonflame_folder
 intermediate.hdfs_output_file:
-    stdin: "provide your answer here"
+    stdin: "hdfs dfs -cat /user/bd2021q2_plosskaya/nonflame_folder/blake.txt"
 intermediate.hdfs_output_file_end:
-    stdin: "provide your answer here"
+    stdin: "hdfs dfs -tail /user/bd2021q2_plosskaya/nonflame_folder/blake.txt"
 intermediate.hdfs_output_file_start:
-    stdin: "provide your answer here"
+    stdin: "hdfs dfs -cat /user/bd2021q2_plosskaya/nonflame_folder/blake.txt |head -n 3"
 intermediate.hdfs_tail_vs_unix_tail:
-    stdin: "provide your answer here"
+    stdin: "-tail в hdfs выводит последний Кб файла, в то время как утилита tail в unix по дефолту выводит последние 10 строк и можно задавать дополнительные аргументы вывода, вроде кол-ва строк, длины в байтах и т.д."
 intermediate.hdfs_copy_file:
-    stdin: "provide your answer here"
+    stdin: "hdfs dfs -cp /user/bd2021q2_plosskaya/nonflame_folder/blake.txt /user/bd2021q2_plosskaya/nonflame_folder/blake_copy.txt"
 intermediate.hdfs_move_file:
     stdin: |-
-        provide your
-        multiline answer
-        here
+        hdfs dfs -get /user/bd2021q2_plosskaya/nonflame_folder/blake_copy.txt /home/group_bd_2021q2/bd2021q2_plosskaya
 intermediate.hdfs_download_and_concatenate:
-    stdin: "provide your answer here"
+    stdin: "hdfs dfs -getmerge -nl /user/bd2021q2_plosskaya/nonflame_folder /home/group_bd_2021q2/bd2021q2_plosskaya/merged_texts.txt"
 advanced.hdfs_set_file_replication:
     stdin: |-
-        provide your
-        multiline answer
-        here
+        hdfs dfs -setrep -w 4 /user/bd2021q2_plosskaya/nonflame_folder/blake.txt
+        hdfs dfs -setrep -w 3 /user/bd2021q2_plosskaya/nonflame_folder/blake.txt
+        занимает порядка 7 секунд
 advanced.hdfs_get_files_and_block:
-    stdin: "provide your answer here"
+    stdin: "hdfs fsck /user/bd2021q2_plosskaya/nonflame_folder/  -blocks -files -locations"
 advanced.hdfs_get_block_information:
-    stdin: "provide your answer here"
+    stdin: "hdfs fsck -blockId blk_1088479641"
 advanced.hdfs_dfs_architecture:
     stdin: |-
-        provide your
-        multiline answer
+        sudo -i -u hdfsuser
+        ssh 176.9.53.253
+        hdfs fsck / -blockId blk_1088479641
         here
 advanced.webhdfs_read_100B:
     stdin: |-
